@@ -21,11 +21,14 @@ public class Generics {
     List<Integer> ints = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
     List<String>  strs = Arrays.asList("tout", "titi", "ototo", "jean", "tous", "taratata");
 
-    ints.stream().filter(n -> n % 2 == 0).map(x -> x * 2).forEach(System.out::println);
-    //for (Integer i: ints) System.out.println(i);
+    //ints.stream().filter(n -> n % 2 == 0).map(x -> x * 2).forEach(System.out::println);
+    ints = filter(ints, i -> i % 2 == 0);
+    ints = map(ints, i -> i * 2);
+    for (Integer i: ints) System.out.println(i);
 
-    strs.stream().map(s -> s.toUpperCase()).filter(s -> s.indexOf("T") != s.lastIndexOf("T")).forEach(System.out::println);
-    //for (String s: strs) System.out.println(s);
+    strs = map(strs, s -> s.toUpperCase());
+    strs = filter(strs, s -> s.indexOf("T") != s.lastIndexOf("T"));
+    for (String s: strs) System.out.println(s);
   }
 
   /**
@@ -37,7 +40,9 @@ public class Generics {
    */
   private <T> List<T> filter(Collection<T> c, Predicate<T> p) {
     List<T> result = new ArrayList<>();
-    result = filter(c, p);
+    for (T t : c)
+        if (p.filter(t))
+            result.add(t);
     return result;
   }
 
@@ -51,7 +56,8 @@ public class Generics {
    */
   private <T, U> List<U> map(Collection<T> c, Mapper<T, U> m) {
     List<U> result = new ArrayList<>();
-    result = map(c, m);
+    for (T t: c)
+        result.add(m.map(t));
     return result;
   }
 }
