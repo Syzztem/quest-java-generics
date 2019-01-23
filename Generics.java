@@ -22,10 +22,16 @@ public class Generics {
     List<Integer> ints = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
     List<String>  strs = Arrays.asList("tout", "titi", "ototo", "jean", "tous", "taratata");
 
-    ints.stream().filter(n -> n % 2 == 0).map(x -> x * 2).collect(Collectors.toList()).forEach(System.out::println);
+    ints.stream()
+    .filter(n -> n % 2 == 0)
+    .map(x -> x * 2)
+    .forEach(System.out::println);
     //for (Integer i: ints) System.out.println(i);
 
-    strs.stream().map(s -> s.toUpperCase()).filter(s -> s.indexOf("T") != s.lastIndexOf("T")).collect(Collectors.toList()).forEach(System.out::println);
+    strs.stream()
+    .map(s -> s.toUpperCase())
+    .filter(s -> s.indexOf("T") != s.lastIndexOf("T"))
+    .forEach(System.out::println);
     //for (String s: strs) System.out.println(s);
   }
 }
