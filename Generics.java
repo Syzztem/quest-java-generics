@@ -29,7 +29,7 @@ public class Generics {
     //for (Integer i: ints) System.out.println(i);
 
     strs.stream()
-    .map(s -> s.toUpperCase())
+    .map(String::toUpperCase)
     .filter(s -> s.indexOf("T") != s.lastIndexOf("T"))
     .forEach(System.out::println);
     //for (String s: strs) System.out.println(s);
